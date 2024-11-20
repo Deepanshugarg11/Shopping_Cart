@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .order-details {
+      margin-top: 30px;
+    }
+
+    .order-details p {
+      margin-bottom: 5px;
+    }
+
+    .product-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .product-item {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+    }
+
+    .product-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .product-title {
+      margin-bottom: 0;
+    }
+
+    .continue-shopping {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron mt-5">
+      <h1 class="display-4">Thank You!</h1>
+      <p class="lead">Your order has been successfully placed.</p>
+      <hr class="my-4">
+      <div class="order-details">
+        <p>Here's the summary of your order:</p>
+        <ul class="product-list" id="orderSummary"></ul>
+      </div>
+      <a class="btn btn-primary btn-lg continue-shopping" href="/" role="button">Continue Shopping</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      let orderDescription = urlParams.get('orderDescription');
+
+      // Remove buttons from the order description
+      orderDescription = orderDescription.replace(/<button.*?<\/button>/g, '');
+
+      const orderSummaryElement = document.getElementById('orderSummary');
+      orderSummaryElement.innerHTML = orderDescription;
+    });
+  </script>
+</body>
+
+</html>
